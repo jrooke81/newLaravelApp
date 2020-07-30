@@ -15,15 +15,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/about', function () {
-    return view('about');
-});
-
-Route::get('/login', function () {
-    return view('login');
+    return view('index');
 });
 
 Route::get('/list', 'ModuleController@list');
