@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,6 @@ Route::get('/login', function () {
 });
 
 Route::get('/list', 'ModuleController@list');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
