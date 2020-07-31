@@ -12,14 +12,19 @@ class BooksTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('books')->insert(
-            array(
-                'book_name' => 'My Test Book',
-                'price' => 5.67,
-                'author' => 'Will Smith',
-                'publication_year' => '2020',
-                'cover_image' => 'amber.jpg'
-            )
-        );
+        $faker = Faker\Factory::create();
+
+        for($i=0;$i<9;$i++){
+            DB::table('books')->insert(
+                array(
+                    'book_name' => $faker->catchPhrase(),
+                    'price' => $faker->randomFloat($nbMaxDecimals = 2, $min = 5, $max = 30),
+                    'author' => $faker->name(),
+                    'publication_year' => $faker->year(2020),
+                    'cover_image' => $faker->imageUrl($width = 265, $height = 400) 
+                    )
+                );
+        }
+
     }
 }

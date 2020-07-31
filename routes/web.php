@@ -14,11 +14,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', 'IndexController@getBooks');
 
-Route::get('/list', 'ModuleController@list');
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
