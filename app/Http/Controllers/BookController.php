@@ -7,7 +7,7 @@ use App\Book;
 
 class BookController extends Controller
 {
-    public function index(){
-        return view('/book/index', array('books'=>Book::all()));
+    public function details($id){
+        return view('/book/bookdetails', array('book'=>Book::find($id)));
     }
 }
