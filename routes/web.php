@@ -17,5 +17,10 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', 'IndexController@getBooks');
 Route::get('/book/{id}', 'BookController@details');
 
+
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('/stock', 'StockController@index')->middleware('admin');
+
