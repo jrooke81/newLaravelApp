@@ -12,19 +12,14 @@ class BooksTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker\Factory::create();
+        factory(App\Book::class, 10)->create();
 
-        for($i=0;$i<9;$i++){
-            DB::table('books')->insert(
-                array(
-                    'book_name' => $faker->catchPhrase(),
-                    'price' => $faker->randomFloat($nbMaxDecimals = 2, $min = 5, $max = 30),
-                    'author' => $faker->name(),
-                    'publication_year' => $faker->year(2020),
-                    'cover_image' => $faker->imageUrl($width = 265, $height = 400) 
-                    )
-                );
-        }
+        $catagories = App\Catagory::all();
 
+        App\Book::all()->each(function ($book) use ($catagories) { 
+            $book->catagories()->attach(
+                $catagories->random(rand(1, 3))->pluck('id')->toArray()
+            ); 
+        });
     }
 }

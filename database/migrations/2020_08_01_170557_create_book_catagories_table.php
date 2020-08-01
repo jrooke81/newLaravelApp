@@ -13,7 +13,7 @@ class CreateBookCatagoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('book_catagories', function (Blueprint $table) {
+        Schema::create('book_catagory', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->bigInteger('book_id');
