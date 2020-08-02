@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', 'IndexController@getBooks');
+Route::get('/', function(){
+    return redirect('/home');
+});
 Route::get('/book/{id}', 'BookController@details');
 
 

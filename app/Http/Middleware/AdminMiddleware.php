@@ -28,7 +28,7 @@ class AdminMiddleware
             return redirect('login');
         }
         elseif($this->auth->user()->is_admin===0){
-            return redirect('');
+            return redirect('home');
         }
 
         return $next($request);
