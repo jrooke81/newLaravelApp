@@ -17,12 +17,12 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function(){
     return redirect('/home');
 });
-Route::get('/book/{id}', 'BookController@details');
-
+Route::get('/book/{id}', 'BookController@index');
+Route::get('/basket', 'BasketController@index');
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::post('/basket/alter_quantity/{basket_item_id}','BasketController@alter_quantity')->name('alter_quantity');
 
 Route::get('/stock', 'StockController@index')->middleware('admin');
 

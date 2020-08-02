@@ -26,5 +26,13 @@ class UsersTableSeeder extends Seeder
                 'remember_token' => Str::random(10)
             )
         );
+
+        $books = App\Book::all();
+
+        App\User::all()->each(function ($user) use ($books) { 
+            $user->basket_items()->attach(
+                $books->random(rand(1, 3))->pluck('id')->toArray()
+            ); 
+        });
     }
 }

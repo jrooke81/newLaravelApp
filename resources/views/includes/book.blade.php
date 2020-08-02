@@ -1,6 +1,6 @@
 <div class="card mt-4">
     <a href="/book/{{$book->id}}">
-        <img class="card-img-top" src="{{$book->cover_image}}" alt="Card image cap">
+        <img class="card-img-top" src="{{$book->cover_image}}" alt="Book Image">
     </a>
     <div class="card-body">
         <h4 class="card-title text-dark">{{$book->book_name}}</h4>
