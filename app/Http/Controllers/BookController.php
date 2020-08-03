@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\BasketItem;
 use Illuminate\Http\Request;
 use App\Book;
 

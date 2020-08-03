@@ -9,19 +9,24 @@
             <h4 class="text-dark">{{$book->book_name}}</h4>
             <h5 class="text-secondary">by {{$book->author}}</h5>
             @foreach($book->catagories as $catagory)
-                <span class="text-info">{{$catagory->catagory_name}} · </span>
+            <span class="text-info">{{$catagory->catagory_name}} · </span>
             @endforeach
             <h6 class="text-success">{{$book->stock_quantity}} in stock</h6>
-            <form>
+            <form method="post" action="{{route('add_to_basket', ['book_id'=>$book->id])}}">
+                @csrf
+                @auth
                 <label for="quantity">Quantity:</label>
                 <select id="quantity" name="quantity">
-                    @for($i = 1;$i<=30;$i++) 
-                    <option value="{{$i}}">{{$i}}</option>
-                    @endfor
+                    @for($i = 1;$i<=10;$i++) <option value="{{$i}}">{{$i}}</option>
+                        @endfor
                 </select>
+                @endauth
+                <h4>£{{$book->price}}</h4>
+                
+                @auth
+                <input type="submit" class="btn btn-primary" value="Add to basket">
+                @endauth
             </form>
-            <h4>£{{$book->price}}</h4>
-            <a href="#" class="btn btn-primary">Add to basket</a>
         </div>
     </div>
 </div>

@@ -17,7 +17,7 @@
                         </td>
                         <td>{{$basket_item->book_name}}</td>
                         <td>
-                            <form method="post" action="{{route('alter_quantity', array('basket_item_id'=>$basket_item->basket_items->id))}}">
+                            <form method="post" action="{{route('alter_quantity', ['basket_item_id'=>$basket_item->basket_items->id])}}">
                                 @csrf
                                 <select name="quantity" onchange="this.form.submit();">
                                     @for($i=1;$i<=10;$i++) <option value="{{$i}}" <?php if ($i == $basket_item->basket_items->quantity) : ?> selected="selected" <?php endif; ?>>
@@ -27,7 +27,7 @@
                             </form>
                         </td>
                         <td>
-                            <form method="post" action="{{route('remove_book', array('basket_item_id'=>$basket_item->basket_items->id))}}">
+                            <form method="post" action="{{route('remove_book', ['basket_item_id'=>$basket_item->basket_items->id])}}">
                                 @csrf
                                 <input type="submit" value="Remove">
                             </form>

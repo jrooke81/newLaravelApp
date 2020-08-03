@@ -6,14 +6,17 @@ use App\BasketItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Contracts\Auth\Guard;
 use App\User;
 
 class BasketController extends Controller
 {
 
-    public function __construct()
+    protected $auth;
+    public function __construct(Guard $auth)
     {
         $this->middleware('auth');
+        $this->auth = $auth;
     }
 
     /**
@@ -36,6 +39,12 @@ class BasketController extends Controller
     public function remove_book($basket_item_id, Request $request){
         $basket_item = BasketItem::find($basket_item_id);
         $basket_item->delete();
+        return redirect('/basket');
+    }
+
+    public function add_to_basket($book_id, Request $request){
+        $user_id = $this->auth->user()->id;
+        User::find($user_id)->basket_items()->attach($book_id, ['quantity'=>$request->input('quantity')]);
         return redirect('/basket');
     }
 
