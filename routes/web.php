@@ -18,11 +18,13 @@ Route::get('/', function(){
     return redirect('/home');
 });
 Route::get('/book/{id}', 'BookController@index');
+
 Route::get('/basket', 'BasketController@index');
+Route::post('/basket/alter_quantity/{basket_item_id}','BasketController@alter_quantity')->name('alter_quantity');
+Route::post('/basket/remove_book/{basket_item_id}','BasketController@remove_book')->name('remove_book');
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
-Route::post('/basket/alter_quantity/{basket_item_id}','BasketController@alter_quantity')->name('alter_quantity');
 
 Route::get('/stock', 'StockController@index')->middleware('admin');
 

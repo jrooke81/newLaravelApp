@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\BasketItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\User;
 
 class BasketController extends Controller
@@ -29,9 +30,14 @@ class BasketController extends Controller
         $basket_item = BasketItem::find($basket_item_id);
         $basket_item->quantity = $request->input('quantity');
         $basket_item->save();
-        return redirect($_SERVER['HTTP_REFERER']);
+        return redirect('/basket');
     }
 
+    public function remove_book($basket_item_id, Request $request){
+        $basket_item = BasketItem::find($basket_item_id);
+        $basket_item->delete();
+        return redirect('/basket');
+    }
 
     /**
      * Show the form for creating a new resource.
