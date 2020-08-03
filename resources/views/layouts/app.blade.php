@@ -67,7 +67,7 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
                                 @if (Auth::user()->is_admin)
-                                <a class="dropdown-item" href="/stock">
+                                <a class="dropdown-item" href="{{route('manage_stock')}}">
                                     Manage Stock
                                 </a>
                                 @endif

@@ -11,7 +11,7 @@
             @if(Session::has('message'))
                 <div class="alert alert-info">{{Session::get('message')}}</div>
             @endif
-            <table class="table table-image">
+            <table class="table">
                 <tbody>
                     @foreach($user->basket_items as $basket_item)
                     <tr>
