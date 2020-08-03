@@ -3,12 +3,12 @@
 <div class="container">
     <div class="row">
         @if(Session::has('message'))
-            <div class="col-12 alert alert-info">{{Session::get('message')}}</div>
+        <div class="col-12 alert alert-info">{{Session::get('message')}}</div>
         @endif
     </div>
     <div class="row d-flex justify-content-center">
         <div class="col-sm-auto col-xs-12">
-            <img src="{{$book->cover_image}}" alt="Cover Image">
+            <img src="{{$book->book_cover_url}}" alt="Cover Image">
         </div>
         <div class="col-sm-auto col-xs-12">
             <h4 class="text-dark">{{$book->book_name}}</h4>

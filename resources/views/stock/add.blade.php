@@ -6,64 +6,95 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Add Book') }}</div>
-
+                @if(Session::has('success'))
+                <div class="alert alert-info">{{Session::get('success')}}</div>
+                @endif
                 <div class="card-body">
-                    <form method="POST" action="{{ route('add_book') }}">
+                    <form method="POST" action="{{route('add_submit')}}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Book Title') }}</label>
+                            <label for="book_title" class="col-md-4 col-form-label text-md-right">{{ __('Book Title') }}</label>
 
                             <div class="col-md-6">
                                 <input id="book_title" type="text" class="form-control @error('book_title') is-invalid @enderror" name="book_title" value="{{ old('book_title') }}" required autofocus>
 
                                 @error('book_title')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="author" class="col-md-4 col-form-label text-md-right">{{ __('Author') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="author" type="text" class="form-control @error('author') is-invalid @enderror" name="author" value="{{ old('author') }}" required>
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                @error('author')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="publication_year" class="col-md-4 col-form-label text-md-right">{{ __('Publication Year') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="publication_year" type="text" class="form-control @error('publication_year') is-invalid @enderror" name="publication_year" value="{{ old('publication_year') }}" required>
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                @error('publication_year')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                            <label for="stock_quantity" class="col-md-4 col-form-label text-md-right">{{ __('Stock Quantity') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="stock_quantity" type="number" min="0" max="32766" class="form-control @error('stock_quantity') is-invalid @enderror" name="stock_quantity" value="{{ old('stock_quantity') }}" required>
+
+                                @error('stock_quantity')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="price" class="col-md-4 col-form-label text-md-right">{{ __('Price') }}</label>
+                            <div class="input-group col-md-6">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">£</span>
+                                </div>
+                                <input id="price" type="number" class="form-control currency @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" placeholder="0.00" step="0.01" data-number-to-fixed="2" required>
+
+                                @error('price')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="book_cover" class="col-md-4 col-form-label text-md-right">{{ __('Book Cover Image') }}</label>
+                            <div class="input-group col-md-6">
+                                <input id="book_cover" type="file" name="book_cover">
                             </div>
                         </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary w-100">
                                     {{ __('Add book') }}
                                 </button>
                             </div>

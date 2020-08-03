@@ -9,7 +9,7 @@
             <h5 class="text-secondary">Your basket is empty</h5>
             @endif
             @if(Session::has('message'))
-                <div class="alert alert-info">{{Session::get('message')}}</div>
+            <div class="alert alert-info">{{Session::get('message')}}</div>
             @endif
             <table class="table">
                 <tbody>
@@ -17,11 +17,11 @@
                     <tr>
                         <td>
                             <a href="{{route('book_details',['book_id'=>$basket_item->id])}}">
-                                <img height="200" width="132" src="{{$basket_item->cover_image}}" alt="Cover Image">
+                                <img height="200" width="132" src="{{$basket_item->book_cover_url}}" alt="Cover Image">
                             </a>
                         </td>
                         <td>
-                            <a href="{{route('book_details',['book_id'=>$basket_item->id])}}">{{$basket_item->book_name}}</a>
+                            <a href="{{route('book_details',['book_id'=>$basket_item->id])}}">{{$basket_item->book_title}}</a>
                         </td>
                         <td>
                             <form method="post" action="{{route('alter_quantity', ['basket_item_id'=>$basket_item->basket_items->id])}}">
@@ -29,7 +29,7 @@
                                 @if($basket_item->stock_quantity >0)
                                 <select name="quantity" onchange="this.form.submit();">
                                     @for($i=1;$i<=$basket_item->stock_quantity;$i++) <option value="{{$i}}" <?php if ($i == $basket_item->basket_items->quantity) : ?> selected="selected" <?php endif; ?>>
-                                        {{$i}}</option>
+                                            {{$i}}</option>
                                         @endfor
                                 </select>
                                 @else

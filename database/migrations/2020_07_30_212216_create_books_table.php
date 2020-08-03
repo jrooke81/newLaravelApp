@@ -17,11 +17,11 @@ class CreateBooksTable extends Migration
             $table->id();
             $table->timestamps();
             $table->smallInteger('stock_quantity');
-            $table->string('book_name');
+            $table->string('book_title');
             $table->decimal('price');
             $table->string('author');
             $table->year('publication_year');
-            $table->string('cover_image');
+            $table->string('book_cover_url')->default('storage/images/book_cover_placeholder.jpg');
         });
     }
 

@@ -1,9 +1,9 @@
 <div class="card mt-4">
     <a href="{{route('book_details',['book_id'=>$book->id])}}">
-        <img class="card-img-top" src="{{$book->cover_image}}" alt="Cover Image">
+        <img class="card-img-top" src="{{$book->book_cover_url}}" alt="Cover Image">
     </a>
     <div class="card-body">
-        <h4 class="card-title text-dark">{{$book->book_name}}</h4>
+        <h4 class="card-title text-dark">{{$book->book_title}}</h4>
         <h5 class="card-subtitle text-secondary">by {{$book->author}}</h5>
         @foreach($book->catagories as $catagory)
         <span class="card-text text-info">{{$catagory->catagory_name}} · </span>

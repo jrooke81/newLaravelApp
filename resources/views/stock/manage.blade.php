@@ -11,16 +11,16 @@
                     <tr>
                         <td>
                             <a href="{{route('book_details',['book_id'=>$book->id])}}">
-                                <img height="200" width="132" src="{{$book->cover_image}}" alt="Cover Image">
+                                <img height="200" width="132" src="{{$book->book_cover_url}}" alt="Cover Image">
                             </a>
                         </td>
                         <td>
-                            <a href="{{route('book_details',['book_id'=>$book->id])}}">{{$book->book_name}}</a>
+                            <a href="{{route('book_details',['book_id'=>$book->id])}}">{{$book->book_title}}</a>
                         </td>
                         <td>
                             <form method="post" action="{{route('alter_stock_quantity', ['book_id'=>$book->id])}}">
                                 @csrf
-                                <input type="number" min="1" max="32766" name="stock_quantity" value="{{$book->stock_quantity}}" required>
+                                <input type="number" min="0" max="32766" name="stock_quantity" value="{{$book->stock_quantity}}" required>
                                 <input type="submit" value="Update Stock Level">
                             </form>
                         </td>
