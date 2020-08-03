@@ -2,6 +2,9 @@
 @section('content')
 <div class="container d-flex justify-content-center">
     <div class="row">
+        @if(Session::has('message'))
+            <div class="alert alert-info">{{Session::get('message')}}</div>
+        @endif
         <div class="col-sm-6 col-xs-12">
             <img src="{{$book->cover_image}}" alt="Card image cap">
         </div>
@@ -23,18 +26,22 @@
             <form method="post" action="{{route('add_to_basket', ['book_id'=>$book->id])}}">
                 @csrf
 
+                @if($book->stock_quantity >= 1)
                 @auth
                 <label for="quantity">Quantity:</label>
                 <select id="quantity" name="quantity">
-                    @for($i = 1;$i<=10;$i++) <option value="{{$i}}">{{$i}}</option>
+                    @for($i = 1;$i<=$book->stock_quantity;$i++) <option value="{{$i}}">{{$i}}</option>
                         @endfor
                 </select>
                 @endauth
+                @endif
                 <h4>£{{$book->price}}</h4>
 
+                @if($book->stock_quantity >= 1)
                 @auth
                 <input type="submit" class="btn btn-primary" value="Add to basket">
                 @endauth
+                @endif
             </form>
         </div>
     </div>
