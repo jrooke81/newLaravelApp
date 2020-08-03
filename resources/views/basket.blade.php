@@ -17,7 +17,7 @@
                     <tr>
                         <td>
                             <a href="{{route('book_details',['book_id'=>$basket_item->id])}}">
-                                <img height="200" width="132" src="{{$basket_item->cover_image}}" alt="cover_image">
+                                <img height="200" width="132" src="{{$basket_item->cover_image}}" alt="Cover Image">
                             </a>
                         </td>
                         <td>
