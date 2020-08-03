@@ -27,7 +27,8 @@ Route::post('/basket/alter_quantity/{basket_item_id}','BasketController@alter_qu
 Route::post('/basket/remove_book/{basket_item_id}','BasketController@remove_book')->name('remove_book');
 Route::post('/basket/add_to_basket/{book_id}','BasketController@add_to_basket')->name('add_to_basket');
 
-Route::get('/stock', 'StockController@index')->middleware('admin')->name('manage_stock');
+Route::get('/stock', 'StockController@manage_index')->middleware('admin')->name('manage_stock');
+Route::get('/stock/add', 'StockController@add_index')->middleware('admin')->name('add_stock');
 Route::post('/stock/alter_stock_quantity/{book_id}','StockController@alter_stock_quantity')->middleware('admin')->name('alter_stock_quantity');
 Route::post('/stock/remove_from_stock/{book_id}','StockController@remove_from_stock')->middleware('admin')->name('remove_from_stock');
 

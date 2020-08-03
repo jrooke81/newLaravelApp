@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Validator;
 
 class StockController extends Controller
 {
-    public function index(){
-        return view('/stock/stock', ['books'=>Book::all()]);
+    public function manage_index(){
+        return view('/stock/manage', ['books'=>Book::all()]);
     }
 
     public function alter_stock_quantity($book_id, Request $request)
@@ -36,5 +36,10 @@ class StockController extends Controller
         $book = Book::find($book_id);
         $book->delete();
         return back();
+    }
+
+    public function add_index()
+    {
+        return view('/stock/add');
     }
 }

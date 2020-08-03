@@ -70,6 +70,10 @@
                                 <a class="dropdown-item" href="{{route('manage_stock')}}">
                                     Manage Stock
                                 </a>
+
+                                <a class="dropdown-item" href="{{route('add_stock')}}">
+                                    Add Stock
+                                </a>
                                 @endif
 
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -80,8 +84,6 @@
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
-
-
                             </div>
                         </li>
                         @endguest
