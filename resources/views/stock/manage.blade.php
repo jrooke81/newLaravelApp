@@ -5,11 +5,6 @@
     <h3 class="text-primary">Manage Stock</h3>
     <div class="row">
         <div class="col-12">
-            @error('stock_quantity')
-            <div class="alert-danger">
-                {{ $message }}
-            </div>
-            @enderror
             <table class="table">
                 <tbody>
                     @foreach($books as $book)
@@ -25,7 +20,7 @@
                         <td>
                             <form method="post" action="{{route('alter_stock_quantity', ['book_id'=>$book->id])}}">
                                 @csrf
-                                <input type="text" name="stock_quantity" value="{{$book->stock_quantity}}">
+                                <input type="number" min="1" max="32766" name="stock_quantity" value="{{$book->stock_quantity}}" required>
                                 <input type="submit" value="Update Stock Level">
                             </form>
                         </td>
