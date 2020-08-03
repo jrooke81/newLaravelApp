@@ -1,16 +1,19 @@
 @extends('layouts.app')
 @section('content')
-<div class="container d-flex justify-content-center">
+<div class="container">
     <div class="row">
         @if(Session::has('message'))
-            <div class="alert alert-info">{{Session::get('message')}}</div>
+            <div class="col-12 alert alert-info">{{Session::get('message')}}</div>
         @endif
-        <div class="col-sm-6 col-xs-12">
+    </div>
+    <div class="row d-flex justify-content-center">
+        <div class="col-sm-auto col-xs-12">
             <img src="{{$book->cover_image}}" alt="Card image cap">
         </div>
-        <div class="col-sm-6 col-xs-12">
+        <div class="col-sm-auto col-xs-12">
             <h4 class="text-dark">{{$book->book_name}}</h4>
             <h5 class="text-secondary">by {{$book->author}}</h5>
+            <h6 class="text-secondary">Published {{$book->publication_year}}</h6>
             @foreach($book->catagories as $catagory)
             <span class="text-info">{{$catagory->catagory_name}} · </span>
             @endforeach
