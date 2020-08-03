@@ -5,9 +5,11 @@
     <h3 class="text-primary">Manage Stock</h3>
     <div class="row">
         <div class="col-12">
-            @if(Session::has('message'))
-                <div class="alert alert-info">{{Session::get('message')}}</div>
-            @endif
+            @error('stock_quantity')
+            <div class="alert-danger">
+                {{ $message }}
+            </div>
+            @enderror
             <table class="table">
                 <tbody>
                     @foreach($books as $book)
