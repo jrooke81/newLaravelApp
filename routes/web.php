@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home/catagory/{catagory_name}', 'HomeController@catagory')->name('browse_catagory');
 Route::get('/', function(){
     return redirect('/home');
 });
