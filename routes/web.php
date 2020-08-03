@@ -19,7 +19,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', function(){
     return redirect('/home');
 });
-Route::get('/book/{id}', 'BookController@index');
+Route::get('/book/{book_id}', 'BookController@index')->name('book_details');
 
 Route::get('/basket', 'BasketController@index');
 Route::post('/basket/alter_quantity/{basket_item_id}','BasketController@alter_quantity')->name('alter_quantity');

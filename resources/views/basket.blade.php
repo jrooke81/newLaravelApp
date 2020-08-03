@@ -13,9 +13,13 @@
                     @foreach($user->basket_items as $basket_item)
                     <tr>
                         <td>
-                            <img height="200" width="132" src="{{$basket_item->cover_image}}" alt="cover_image">
+                            <a href="{{route('book_details',['book_id'=>$basket_item->id])}}">
+                                <img height="200" width="132" src="{{$basket_item->cover_image}}" alt="cover_image">
+                            </a>
                         </td>
-                        <td>{{$basket_item->book_name}}</td>
+                        <td>
+                            <a href="{{route('book_details',['book_id'=>$basket_item->id])}}">{{$basket_item->book_name}}</a>
+                        </td>
                         <td>
                             <form method="post" action="{{route('alter_quantity', ['basket_item_id'=>$basket_item->basket_items->id])}}">
                                 @csrf

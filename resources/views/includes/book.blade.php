@@ -1,5 +1,5 @@
 <div class="card mt-4">
-    <a href="/book/{{$book->id}}">
+    <a href="{{route('book_details',['book_id'=>$book->id])}}">
         <img class="card-img-top" src="{{$book->cover_image}}" alt="Book Image">
     </a>
     <div class="card-body">
@@ -17,7 +17,7 @@
         @endif
     </div>
     <div class="card-footer d-flex justify-content-between">
-        <a href="/book/{{$book->id}}" class="btn btn-primary">See details</a>
+        <a href="{{route('book_details',['book_id'=>$book->id])}}" class="btn btn-primary">See details</a>
         <h4 class="my-auto">£{{$book->price}}</h4>
     </div>
 </div>
