@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', function(){
     return redirect('/home');
 });
@@ -24,8 +26,6 @@ Route::post('/basket/alter_quantity/{basket_item_id}','BasketController@alter_qu
 Route::post('/basket/remove_book/{basket_item_id}','BasketController@remove_book')->name('remove_book');
 Route::post('/basket/add_to_basket/{book_id}','BasketController@add_to_basket')->name('add_to_basket');
 
-Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('/stock', 'StockController@index')->middleware('admin');
+
 

@@ -45,7 +45,7 @@ class BasketController extends Controller
     public function add_to_basket($book_id, Request $request){
         $user_id = $this->auth->user()->id;
         User::find($user_id)->basket_items()->attach($book_id, ['quantity'=>$request->input('quantity')]);
-        return redirect('/basket');
+        return redirect('/book/'.$book_id);
     }
 
     /**

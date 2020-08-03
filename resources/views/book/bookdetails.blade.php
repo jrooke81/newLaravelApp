@@ -11,9 +11,18 @@
             @foreach($book->catagories as $catagory)
             <span class="text-info">{{$catagory->catagory_name}} · </span>
             @endforeach
+
+            @if($book->stock_quantity > 1)
             <h6 class="text-success">{{$book->stock_quantity}} in stock</h6>
+            @elseif($book->stock_quantity == 1)
+            <h6 class="text-warning">Only 1 left in stock!</h6>
+            @else
+            <h6 class="text-danger">Out of stock!</h6>
+            @endif
+
             <form method="post" action="{{route('add_to_basket', ['book_id'=>$book->id])}}">
                 @csrf
+
                 @auth
                 <label for="quantity">Quantity:</label>
                 <select id="quantity" name="quantity">
@@ -22,7 +31,7 @@
                 </select>
                 @endauth
                 <h4>£{{$book->price}}</h4>
-                
+
                 @auth
                 <input type="submit" class="btn btn-primary" value="Add to basket">
                 @endauth

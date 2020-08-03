@@ -8,6 +8,13 @@
         @foreach($book->catagories as $catagory)
         <span class="card-text text-info">{{$catagory->catagory_name}} · </span>
         @endforeach
+        @if($book->stock_quantity > 1)
+        <h6 class="text-success">{{$book->stock_quantity}} in stock</h6>
+        @elseif($book->stock_quantity == 1)
+        <h6 class="text-warning">Only 1 left in stock!</h6>
+        @else
+        <h6 class="text-danger">Out of stock!</h6>
+        @endif
     </div>
     <div class="card-footer d-flex justify-content-between">
         <a href="/book/{{$book->id}}" class="btn btn-primary">See details</a>
