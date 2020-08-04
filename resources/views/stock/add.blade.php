@@ -86,6 +86,24 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="catagories" class="col-md-4 col-form-label text-md-right">{{ __('Catagories') }}</label>
+                            <div class="input-group col-md-6">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="computing_checkbox" name="computing_checkbox" value="1">
+                                    <label class="form-check-label" for="computing_checkbox">{{__('Computing')}}</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="business_checkbox" name="business_checkbox" value="2">
+                                    <label class="form-check-label" for="business_checkbox">{{__('Business')}}</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="languages_checkbox" name="languages_checkbox" value="3">
+                                    <label class="form-check-label" for="languages_checkbox">{{__('Languages')}}</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="book_cover" class="col-md-4 col-form-label text-md-right">{{ __('Book Cover Image') }}</label>
                             <div class="input-group col-md-6">
                                 <input id="book_cover" type="file" name="book_cover">

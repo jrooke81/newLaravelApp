@@ -60,6 +60,17 @@ class StockController extends Controller
                     'stock_quantity' => $request->input('stock_quantity'),
                     'price' => $request->input('price')
                 ]);
+
+                if ($request->has('computing_checkbox')) {
+                    $book->catagories()->attach($request->input('computing_checkbox'));
+                }
+                if ($request->has('business_checkbox')) {
+                    $book->catagories()->attach($request->input('business_checkbox'));
+                }
+                if ($request->has('languages_checkbox')) {
+                    $book->catagories()->attach($request->input('languages_checkbox'));
+                }
+
                 $request->book_cover->storeAs('/public/images', $book->id . "." . $extension);
                 $url = Storage::url("images/" . $book->id . "." . $extension);
                 $book->book_cover_url = $url;
