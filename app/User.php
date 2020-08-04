@@ -39,17 +39,14 @@ class User extends Authenticatable
 
     public function basket_items()
     {
-        return $this->belongsToMany('App\Book', 'basket_items')
-            ->as('basket_items')
-            ->withPivot(['quantity', 'id'])
-            ->withTimestamps();
+        return $this->hasMany(BasketItem::class);
     }
 
     public function basket_total()
     {
         $total = 0;
         foreach ($this->basket_items as $basket_item) {
-            $total += $basket_item->price * $basket_item->basket_items->quantity;
+            $total += $basket_item->price * $basket_item->quantity;
         }
         return number_format($total,  2);
     }

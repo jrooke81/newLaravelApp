@@ -60,10 +60,15 @@ class BasketController extends Controller
         $basket_items = User::find($user_id)->basket_items();
         $existing_basket_item = $basket_items->where('book_id','=',$book_id)->first();
         if($existing_basket_item === null){
-            $basket_items->attach($book_id, ['quantity'=>$request->input('quantity')]);
+            BasketItem::create(
+                [
+                    'user_id' => $user_id,
+                    'book_id' => $book_id,
+                    'quantity' => $request->input('quantity')
+                ]);
         }
         else{
-            $updated_basket_item = BasketItem::find($existing_basket_item->basket_items->id);
+            $updated_basket_item = BasketItem::find($existing_basket_item->id);
             $updated_basket_item->quantity +=  $request->input('quantity');
             if($updated_basket_item->quantity <= Book::find($book_id)->stock_quantity){
                 $updated_basket_item->save();

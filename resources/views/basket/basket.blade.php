@@ -23,35 +23,37 @@
                     @foreach($user->basket_items as $basket_item)
                     <tr>
                         <td>
-                            <a href="{{route('book_details',['book_id'=>$basket_item->id])}}">
-                                <img height="200" width="132" src="{{$basket_item->book_cover_url}}" alt="Cover Image">
+                            <a href="{{route('book_details',['book_id'=>$basket_item->book_id])}}">
+                                <img height="200" width="132" src="{{$basket_item->book->book_cover_url}}" alt="Cover Image">
                             </a>
                         </td>
                         <td>
-                            <a href="{{route('book_details',['book_id'=>$basket_item->id])}}"><h4 class="text-dark">{{$basket_item->book_title}}</h4></a>
-                            
-                            <h5 class="text-secondary">by {{$basket_item->author}}</h5>
-                            @foreach($basket_item->catagories as $catagory)
+                            <a href="{{route('book_details',['book_id'=>$basket_item->book_id])}}">
+                                <h4 class="text-dark">{{$basket_item->book->book_title}}</h4>
+                            </a>
+
+                            <h5 class="text-secondary">by {{$basket_item->book->author}}</h5>
+                            @foreach($basket_item->book->catagories as $catagory)
                             <span class="text-info">{{$catagory->catagory_name}} · </span>
                             @endforeach
-                            @if($basket_item->stock_quantity > 1)
-                            <h6 class="text-success">{{$basket_item->stock_quantity}} in stock</h6>
-                            @elseif($basket_item->stock_quantity == 1)
+                            @if($basket_item->book->stock_quantity > 1)
+                            <h6 class="text-success">{{$basket_item->book->stock_quantity}} in stock</h6>
+                            @elseif($basket_item->book->stock_quantity == 1)
                             <h6 class="text-warning">Only 1 left in stock!</h6>
                             @else
                             <h6 class="text-danger">Out of stock!</h6>
                             @endif
-                            <form method="post" action="{{route('remove_book', ['basket_item_id'=>$basket_item->basket_items->id])}}">
+                            <form method="post" action="{{route('remove_book', ['basket_item_id'=>$basket_item->id])}}">
                                 @csrf
                                 <input type="submit" value="Remove">
                             </form>
                         </td>
                         <td>
-                            <form method="post" action="{{route('alter_quantity', ['basket_item_id'=>$basket_item->basket_items->id])}}">
+                            <form method="post" action="{{route('alter_quantity', ['basket_item_id'=>$basket_item->id])}}">
                                 @csrf
-                                @if($basket_item->stock_quantity >0)
+                                @if($basket_item->book->stock_quantity > 0)
                                 <select name="quantity" onchange="this.form.submit();">
-                                    @for($i=1;$i<=$basket_item->stock_quantity;$i++) <option value="{{$i}}" <?php if ($i == $basket_item->basket_items->quantity) : ?> selected="selected" <?php endif; ?>>
+                                    @for($i=1;$i<=$basket_item->book->stock_quantity;$i++) <option value="{{$i}}" <?php if ($i == $basket_item->quantity) : ?> selected="selected" <?php endif; ?>>
                                             {{$i}}</option>
                                         @endfor
                                 </select>
@@ -61,7 +63,7 @@
                             </form>
                         </td>
                         <td>
-                            £{{$basket_item->price}}
+                            £{{$basket_item->book->price}}
                         </td>
                         <td>£{{$basket_item->price_subtotal()}}</td>
                     </tr>
@@ -83,8 +85,7 @@
                         <td>
                             <form method="post" action="{{route('confirm_order',['user_id'=>$user->id])}}">
                                 @csrf
-                                <input type="submit" class="btn btn-primary" value="Confirm Order" 
-                                    <?php if ($user->basket_items->count()===0) : ?> disabled <?php endif; ?>>
+                                <input type="submit" class="btn btn-primary" value="Confirm Order" <?php if ($user->basket_items->count() === 0) : ?> disabled <?php endif; ?>>
                             </form>
                         </td>
                     </tr>

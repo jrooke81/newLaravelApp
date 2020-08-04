@@ -27,12 +27,12 @@ class UsersTableSeeder extends Seeder
             )
         );
 
-        $books = App\Book::all();
+        // $books = App\Book::all();
 
-        App\User::all()->each(function ($user) use ($books) { 
-            $user->basket_items()->attach(
-                $books->random(rand(1, 3))->pluck('id')->toArray()
-            ); 
-        });
+        // App\User::all()->each(function ($user) use ($books) { 
+        //     $user->basket_items()->attach(
+        //         $books->random(rand(1, 3))->pluck('id')->toArray()
+        //     ); 
+        // });
     }
 }
