@@ -19,6 +19,7 @@ class CreateOrderItemsTable extends Migration
             $table->foreignId('order_id');
             $table->foreignId('book_id');
             $table->smallInteger('quantity');
+            $table->decimal('unit_cost');
         });
     }
 

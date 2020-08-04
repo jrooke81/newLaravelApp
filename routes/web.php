@@ -34,3 +34,6 @@ Route::get('/stock/add', 'StockController@add_index')->middleware('admin')->name
 Route::post('/stock/alter_stock_quantity/{book_id}', 'StockController@alter_stock_quantity')->middleware('admin')->name('alter_stock_quantity');
 Route::post('/stock/add_submit', 'StockController@add_submit')->middleware('admin')->name('add_submit');
 Route::post('/stock/remove_from_stock/{book_id}', 'StockController@remove_from_stock')->middleware('admin')->name('remove_from_stock');
+
+Route::get('/orders/overview', 'OrderController@overview')->middleware('admin')->name('orders_overview');
+Route::get('/orders/details/{order_id}', 'OrderController@details')->middleware('admin')->name('orders_details');

@@ -17,4 +17,21 @@ class Order extends Model
     {
         return $this->hasMany(OrderItem::class);
     }
+
+    public function cost(){
+        $total = 0;
+        foreach($this->order_items as $order_item){
+            $total += $order_item->unit_cost * $order_item->quantity;
+        }
+        return number_format($total,  2);
+    }
+
+    public function book_count()
+    {
+        return $this->order_items->count();
+    }
+
+    public function status(){
+        return $this->order_status;
+    }
 }

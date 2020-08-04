@@ -74,6 +74,10 @@
                                 <a class="dropdown-item" href="{{route('add_stock')}}">
                                     Add Stock
                                 </a>
+
+                                <a class="dropdown-item" href="{{route('orders_overview')}}">
+                                    View Orders
+                                </a>
                                 @endif
 
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();

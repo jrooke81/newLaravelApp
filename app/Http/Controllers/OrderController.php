@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    protected $fillable = ['user_id', 'status_code'];
 
     public function order_confirmed($user_id)
     {
@@ -24,12 +23,18 @@ class OrderController extends Controller
             OrderItem::create([
                 'order_id' => $order->id,
                 'book_id' => $basket_item->book_id,
-                'quantity' => $basket_item->quantity
+                'quantity' => $basket_item->quantity,
+                'unit_cost' => $basket_item->book->price
             ]);
 
             $basket_item->delete();
         }
 
         return view('/basket/confirmed', ['order_id' => $order->id]);
+    }
+
+    public function overview()
+    {
+        return view('orders/orders_overview',['orders'=>Order::all()]);
     }
 }
