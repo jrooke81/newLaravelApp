@@ -12,6 +12,13 @@
             <div class="alert alert-info">{{Session::get('message')}}</div>
             @endif
             <table class="table">
+                <thead>
+                    <td>Cover</td>
+                    <td>Book Details</td>
+                    <td>Quantity</td>
+                    <td>Unit Price</td>
+                    <td>Price</td>
+                </thead>
                 <tbody>
                     @foreach($user->basket_items as $basket_item)
                     <tr>
@@ -21,7 +28,23 @@
                             </a>
                         </td>
                         <td>
-                            <a href="{{route('book_details',['book_id'=>$basket_item->id])}}">{{$basket_item->book_title}}</a>
+                            <a href="{{route('book_details',['book_id'=>$basket_item->id])}}"><h4 class="text-dark">{{$basket_item->book_title}}</h4></a>
+                            
+                            <h5 class="text-secondary">by {{$basket_item->author}}</h5>
+                            @foreach($basket_item->catagories as $catagory)
+                            <span class="text-info">{{$catagory->catagory_name}} · </span>
+                            @endforeach
+                            @if($basket_item->stock_quantity > 1)
+                            <h6 class="text-success">{{$basket_item->stock_quantity}} in stock</h6>
+                            @elseif($basket_item->stock_quantity == 1)
+                            <h6 class="text-warning">Only 1 left in stock!</h6>
+                            @else
+                            <h6 class="text-danger">Out of stock!</h6>
+                            @endif
+                            <form method="post" action="{{route('remove_book', ['basket_item_id'=>$basket_item->basket_items->id])}}">
+                                @csrf
+                                <input type="submit" value="Remove">
+                            </form>
                         </td>
                         <td>
                             <form method="post" action="{{route('alter_quantity', ['basket_item_id'=>$basket_item->basket_items->id])}}">
@@ -38,14 +61,21 @@
                             </form>
                         </td>
                         <td>
-                            <form method="post" action="{{route('remove_book', ['basket_item_id'=>$basket_item->basket_items->id])}}">
-                                @csrf
-                                <input type="submit" value="Remove">
-                            </form>
+                            £{{$basket_item->price}}
                         </td>
-                        <td>£{{$basket_item->price}}</td>
+                        <td>£{{$basket_item->price_subtotal()}}</td>
                     </tr>
                     @endforeach
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <h5 class="text-right">Total:</h5>
+                        </td>
+                        <td><strong>£{{$user->basket_total()}}</strong></td>
+
+                    </tr>
                 </tbody>
             </table>
         </div>

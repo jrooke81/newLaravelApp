@@ -14,4 +14,10 @@ class Book extends Model
     {
         return $this->belongsToMany('App\Catagory');
     }
+
+    public function price_subtotal()
+    {
+        $subtotal = $this->price * $this->basket_items->quantity;
+        return number_format($subtotal,  2);
+    }
 }

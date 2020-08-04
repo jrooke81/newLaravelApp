@@ -37,10 +37,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function basket_items(){
+    public function basket_items()
+    {
         return $this->belongsToMany('App\Book', 'basket_items')
-                    ->as('basket_items')
-                    ->withPivot(['quantity','id'])
-                    ->withTimestamps();
+            ->as('basket_items')
+            ->withPivot(['quantity', 'id'])
+            ->withTimestamps();
+    }
+
+    public function basket_total()
+    {
+        $total = 0;
+        foreach ($this->basket_items as $basket_item) {
+            $total += $basket_item->price * $basket_item->basket_items->quantity;
+        }
+        return number_format($total,  2);
     }
 }
