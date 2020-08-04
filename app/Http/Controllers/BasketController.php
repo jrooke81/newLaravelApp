@@ -70,4 +70,9 @@ class BasketController extends Controller
         }
         return back();
     }
+
+    public function confirm_order($user_id)
+    {
+        return redirect()->route('home');
+    }
 }
