@@ -35,6 +35,11 @@ class OrderController extends Controller
 
     public function overview()
     {
-        return view('orders/orders_overview',['orders'=>Order::all()]);
+        return view('order/orders_overview',['orders'=>Order::all()]);
+    }
+
+    public function details($order_id)
+    {
+        return view('order/order_details',['order'=>Order::find($order_id)]);
     }
 }

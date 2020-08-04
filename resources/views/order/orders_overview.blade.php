@@ -13,6 +13,7 @@
                     <td>Total Cost</td>
                     <td>Number of Books</td>
                     <td>Status</td>
+                    <td>Details</td>
                 </thead>
                 <tbody>
                     @foreach($orders as $order)
@@ -23,6 +24,7 @@
                         <td>£{{$order->cost()}}</td>
                         <td>{{$order->book_count()}}</td>
                         <td>{{$order->status()}}</td>
+                        <td><a href="{{route('order_details',['order_id'=>$order->id])}}">{{__('See Details')}}</a>
                     </tr>
                     @endforeach
                 </tbody>
