@@ -26,6 +26,7 @@
             <h6 class="text-danger">Out of stock!</h6>
             @endif
 
+            @if(Auth::user()->is_admin === 0)
             <form method="post" action="{{route('add_to_basket', ['book_id'=>$book->id])}}">
                 @csrf
 
@@ -46,6 +47,7 @@
                 @endauth
                 @endif
             </form>
+            @endif
         </div>
     </div>
 </div>

@@ -24,6 +24,10 @@ class OrderController extends Controller
                 'unit_cost' => $basket_item->book->price
             ]);
 
+            $book = $basket_item->book;
+            $book->stock_quantity -= $basket_item->quantity;
+            $book->save();
+
             $basket_item->delete();
         }
 
