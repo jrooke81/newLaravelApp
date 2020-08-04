@@ -30,8 +30,4 @@ class Order extends Model
     {
         return $this->order_items->count();
     }
-
-    public function status(){
-        return $this->order_status;
-    }
 }

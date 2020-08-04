@@ -17,7 +17,6 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('user_id');
-            $table->enum('order_status',['placed','complete']);
         });
     }
 

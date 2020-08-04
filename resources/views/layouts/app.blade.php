@@ -55,9 +55,11 @@
                         @endif
                         @else
                         <li>
+                            @if (Auth::user()->is_admin === 0)
                             <a href="/basket" class="btn btn-light">
                                 <i class="fas fa-shopping-basket"></i> Basket
                             </a>
+                            @endif
                         </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
