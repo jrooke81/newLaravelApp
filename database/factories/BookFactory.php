@@ -12,6 +12,6 @@ $factory->define(Book::class, function (Faker $faker) {
         'price' => $faker->randomFloat($nbMaxDecimals = 2, $min = 5, $max = 30),
         'author' => $faker->name(),
         'publication_year' => $faker->year(2020),
-        //'book_cover_url' => $faker->imageUrl($width = 265, $height = 400) 
+        'book_cover_url' => $faker->imageUrl($width = 400, $height = 600)
     ];
 });

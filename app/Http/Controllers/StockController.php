@@ -27,6 +27,7 @@ class StockController extends Controller
     public function remove_from_stock($book_id)
     {
         $book = Book::find($book_id);
+        Storage::disk('public')->delete(substr($book->book_cover_url, 9));
         $book->delete();
         return back();
     }
@@ -46,7 +47,7 @@ class StockController extends Controller
                     'publication_year' => ['integer', 'gt:0', 'lt:30000'],
                     'stock_quantity' => ['integer', 'gt:0', 'lt:10000'],
                     'price' => ['numeric', 'gt:0'],
-                    'book_cover' => ['mimes:jpeg,png', 'size:100000'],
+                    'book_cover' => ['mimes:jpeg,png', 'size:3000'],
                 ]);
 
                 if ($validator->failed()) {

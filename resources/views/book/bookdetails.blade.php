@@ -8,7 +8,7 @@
     </div>
     <div class="row d-flex justify-content-center">
         <div class="col-sm-auto col-xs-12">
-            <img src="{{$book->book_cover_url}}" alt="Cover Image">
+            <img height="600" src="{{$book->book_cover_url}}" alt="Cover Image">
         </div>
         <div class="col-sm-auto col-xs-12">
             <h4 class="text-dark">{{$book->book_name}}</h4>
