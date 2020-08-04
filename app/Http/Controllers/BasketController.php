@@ -30,10 +30,6 @@ class BasketController extends Controller
         return view('/basket/basket', array('user'=>Auth::user()));
     }
 
-    public function confirmed($order_id){
-        return view('/basket/confirmed',['order_id'=>$order_id]);
-    }
-
     public function alter_quantity($basket_item_id, Request $request){
         $basket_item = BasketItem::find($basket_item_id);
         $book = Book::find($basket_item->book_id);
@@ -78,10 +74,5 @@ class BasketController extends Controller
             }
         }
         return back();
-    }
-
-    public function confirm_order($user_id)
-    {
-        return redirect()->route('confirmed',['order_id'=>123456]);
     }
 }

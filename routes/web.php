@@ -15,19 +15,19 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/home/catagory/{catagory_name}', 'HomeController@catagory')->name('browse_catagory');
 Route::get('/', function () {
     return redirect('/home');
 });
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home/catagory/{catagory_name}', 'HomeController@catagory')->name('browse_catagory');
 Route::get('/book/{book_id}', 'BookController@index')->name('book_details');
 
 Route::get('/basket', 'BasketController@index');
-Route::get('/confirmed/{order_id}', 'BasketController@confirmed')->name('confirmed');
 Route::post('/basket/alter_quantity/{basket_item_id}', 'BasketController@alter_quantity')->name('alter_quantity');
 Route::post('/basket/remove_book/{basket_item_id}', 'BasketController@remove_book')->name('remove_book');
 Route::post('/basket/add_to_basket/{book_id}', 'BasketController@add_to_basket')->name('add_to_basket');
-Route::post('/basket/confirm_order/{user_id}', 'BasketController@confirm_order')->name('confirm_order');
+
+Route::post('/order/{user_id}', 'OrderController@order_confirmed')->name('order_confirmed');
 
 Route::get('/stock', 'StockController@manage_index')->middleware('admin')->name('manage_stock');
 Route::get('/stock/add', 'StockController@add_index')->middleware('admin')->name('add_stock');

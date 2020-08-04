@@ -46,7 +46,7 @@ class User extends Authenticatable
     {
         $total = 0;
         foreach ($this->basket_items as $basket_item) {
-            $total += $basket_item->price * $basket_item->quantity;
+            $total += $basket_item->book->price * $basket_item->quantity;
         }
         return number_format($total,  2);
     }

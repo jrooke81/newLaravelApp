@@ -83,7 +83,7 @@
                         <td></td>
                         <td></td>
                         <td>
-                            <form method="post" action="{{route('confirm_order',['user_id'=>$user->id])}}">
+                            <form method="post" action="{{route('order_confirmed',['user_id'=>$user->id])}}">
                                 @csrf
                                 <input type="submit" class="btn btn-primary" value="Confirm Order" <?php if ($user->basket_items->count() === 0) : ?> disabled <?php endif; ?>>
                             </form>
