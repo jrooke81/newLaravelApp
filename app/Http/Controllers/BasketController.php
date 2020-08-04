@@ -27,7 +27,11 @@ class BasketController extends Controller
      */
     public function index()
     {
-        return view('/basket', array('user'=>Auth::user()));
+        return view('/basket/basket', array('user'=>Auth::user()));
+    }
+
+    public function confirmed($order_id){
+        return view('/basket/confirmed',['order_id'=>$order_id]);
     }
 
     public function alter_quantity($basket_item_id, Request $request){
@@ -73,6 +77,6 @@ class BasketController extends Controller
 
     public function confirm_order($user_id)
     {
-        return redirect()->route('home');
+        return redirect()->route('confirmed',['order_id'=>123456]);
     }
 }

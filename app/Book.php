@@ -15,6 +15,10 @@ class Book extends Model
         return $this->belongsToMany('App\Catagory');
     }
 
+    public function order_item(){
+        return $this->hasMany(OrderItem::class);
+    }
+
     public function price_subtotal()
     {
         $subtotal = $this->price * $this->basket_items->quantity;

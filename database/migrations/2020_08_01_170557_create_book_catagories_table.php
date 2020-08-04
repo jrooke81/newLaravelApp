@@ -16,8 +16,8 @@ class CreateBookCatagoriesTable extends Migration
         Schema::create('book_catagory', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->bigInteger('book_id');
-            $table->bigInteger('catagory_id');
+            $table->foreignId('book_id');
+            $table->foreignId('catagory_id');
         });
     }
 

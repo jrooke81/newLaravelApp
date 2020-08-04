@@ -23,6 +23,7 @@ Route::get('/', function () {
 Route::get('/book/{book_id}', 'BookController@index')->name('book_details');
 
 Route::get('/basket', 'BasketController@index');
+Route::get('/confirmed/{order_id}', 'BasketController@confirmed')->name('confirmed');
 Route::post('/basket/alter_quantity/{basket_item_id}', 'BasketController@alter_quantity')->name('alter_quantity');
 Route::post('/basket/remove_book/{basket_item_id}', 'BasketController@remove_book')->name('remove_book');
 Route::post('/basket/add_to_basket/{book_id}', 'BasketController@add_to_basket')->name('add_to_basket');
